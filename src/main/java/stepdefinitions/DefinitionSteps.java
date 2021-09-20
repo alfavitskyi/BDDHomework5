@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.SearchResultPage;
-import pages.SignInPage;
+import pages.RegisterPage;
 import pages.WishListPage;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
@@ -24,7 +24,7 @@ public class DefinitionSteps {
     HomePage homePage;
     SearchResultPage searchResultPage;
     WishListPage wishListPage;
-    SignInPage signInPage;
+    RegisterPage signInPage;
 
 
     @Before
