@@ -1,10 +1,7 @@
 package manager;
 
 import org.openqa.selenium.WebDriver;
-import pages.HomePage;
-import pages.SearchResultPage;
-import pages.RegisterPage;
-import pages.WishListPage;
+import pages.*;
 
 public class PageFactoryManager {
 WebDriver driver;
@@ -17,5 +14,6 @@ WebDriver driver;
     }
     public SearchResultPage getSearchResultPage (){return new SearchResultPage(driver);}
     public WishListPage getWishListPage (){return new WishListPage(driver);}
-    public RegisterPage getSignInPage (){return new RegisterPage(driver);}
+    public RegisterPage getRegisterPage(){return new RegisterPage(driver);}
+    public SignInPage getSignInPage(){return new SignInPage(driver);}
 }

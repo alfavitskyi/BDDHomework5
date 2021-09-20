@@ -33,6 +33,12 @@ public class HomePage extends BasePage{
     public void isSearchFieldVisible(){
         searchField.isDisplayed();
     }
+    public void isAccountButtonVisible(){
+        accountButton.isDisplayed();
+    }
+    public void isMyAccountButtonVisible(){
+        myAccountButton.isDisplayed();
+    }
     public void clickSearchButton(){
         searchButton.click();
     }

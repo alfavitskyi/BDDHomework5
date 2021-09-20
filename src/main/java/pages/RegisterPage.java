@@ -40,7 +40,7 @@ public class RegisterPage extends BasePage{
     public void putLastNameInRegistration (String lastNameForRegistration){
         lastNameInRegistration.sendKeys(lastNameForRegistration);
     }
-    public void passwordInRegistration(String passwordForRegistration){
+    public void putPasswordInRegistration(String passwordForRegistration){
         passwordInRegistration.sendKeys(passwordForRegistration);
     }
     public void setDayInRegistration (int day){
@@ -49,13 +49,30 @@ public class RegisterPage extends BasePage{
         Select options = new Select(driver.findElement(By.className("//div[@class='subfield select-list']")));
         options.selectByIndex(day);
     }
-    public void setMonthInRegistration(){
-        monthInRegistration.click();
+    public void setMonthInRegistration (int month){
+        dayInRegistration.click();
+        driver.getCurrentUrl();
+        Select options = new Select(driver.findElement(By.className("//div[@class='subfield last-subfield select-list']")));
+        options.selectByIndex(month);
     }
-    public void setYearInRegistration(){
-        yearInRegistration.click();
+    public void setYearInRegistration (int year){
+        dayInRegistration.click();
+        driver.getCurrentUrl();
+        Select options = new Select(driver.findElement(By.className("//div[@class='subfield last-subfield select-list']")));
+        options.selectByIndex(year);
     }
+//    public void setMonthInRegistration(){
+//        monthInRegistration.click();
+//    }
+//    public void setYearInRegistration(){
+//        yearInRegistration.click();
+//    }
     public void clickJoinButton(){
         joinButton.click();
     }
+    public void clickSubmitButton(){
+        submitInRegistration.click();
+    }
+
+
 }

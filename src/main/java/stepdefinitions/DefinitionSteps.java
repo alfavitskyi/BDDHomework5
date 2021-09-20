@@ -6,10 +6,7 @@ import io.cucumber.java.en.And;
 import manager.PageFactoryManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.HomePage;
-import pages.SearchResultPage;
-import pages.RegisterPage;
-import pages.WishListPage;
+import pages.*;
 
 import static io.github.bonigarcia.wdm.WebDriverManager.chromedriver;
 import static java.lang.Thread.sleep;
@@ -24,7 +21,8 @@ public class DefinitionSteps {
     HomePage homePage;
     SearchResultPage searchResultPage;
     WishListPage wishListPage;
-    RegisterPage signInPage;
+    RegisterPage registerPage;
+    SignInPage signInPage;
 
 
     @Before
@@ -61,6 +59,16 @@ public class DefinitionSteps {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         homePage.isSearchFieldVisible();
     }
+    @And("User checks search Account button visibility")
+    public void checkAccountButtonVisibility(){
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        homePage.isAccountButtonVisible();
+    }
+    @And("User checks search My account button visibility")
+    public void checkMyAccountButtonVisibility(){
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        homePage.isMyAccountButtonVisible();
+    }
 
     @And("User clicks first product to wishlist")
     public void clickWishList() {
@@ -87,14 +95,72 @@ public class DefinitionSteps {
     public void clickOnMyAccountButton(){
         homePage.clickOnMyAccountButton();
     }
-    @And("User puts information for registration: email {string}, first name {string}, last name {string}, password {string}, day{int}")
-    public void fillInRegisterForm(String email, String firstName,String lastName, String password, int day){
-        signInPage.putEmailInRegistration(email);
-        signInPage.putFirstNameInRegistration(firstName);
-        signInPage.putLastNameInRegistration(lastName);
-        signInPage.passwordInRegistration(password);
-        signInPage.setDayInRegistration(day);
+    @And("User selects day {int} in registration form")
+    public void fillInDayRegisterForm(int day){
+       registerPage.setDayInRegistration(day);
     }
+    @And("User selects month {int} in registration form")
+    public void fillInMonthRegisterForm(int month){
+        registerPage.setMonthInRegistration(month);
+    }
+    @And("User selects year {int} in registration form")
+    public void fillInYearRegisterForm(int year){
+        registerPage.setMonthInRegistration(year);
+    }
+    @And("User puts  email {string} in registration form")
+    public void putEmailForRegistration (String email){
+        registerPage.putEmailInRegistration(email);
+        }
+    @And("User puts  first name {string} in registration form")
+    public void putFirstNameForRegistration (String firstName){
+        registerPage.putFirstNameInRegistration(firstName);
+    }
+    @And("User puts  last name {string} in registration form")
+    public void putLastNameForRegistration (String lastName){
+        registerPage.putLastNameInRegistration(lastName);
+    }
+    @And("User puts  password {string} in registration form")
+    public void putPasswordForRegistration (String password){
+        registerPage.putPasswordInRegistration(password);
+    }
+    @And("User clicks on submit button for registration")
+    public void clickOnSubmitButtonForRegistration(){
+        registerPage.clickSubmitButton();
+    }
+    @And("User clicks Join in registration tab")
+    public void clickJoinButton (){
+        registerPage.clickJoinButton();
+    }
+    @And("User checks successful registration with email {String}")
+    public void checkSuccessfulRegistration (String expectedEmail){
+        assertEquals(expectedEmail,signInPage.getEmailFromMyAccount());
+    }
+
+    @And("User puts email {string} for sign in my account")
+    public void EmailForSignIn(String email){
+        signInPage.putEmailForSignIn(email);
+    }
+    @And("User puts password {string} for sign in my account")
+    public void PasswordForSignIn(String password){
+        signInPage.putPasswordForSignIn(password);
+    }
+    @And("User clicks Sign In button")
+    public void clickSignInToMyAccount(){
+        signInPage.clickSignIn();
+    }
+    @And("User goes to My details in My Account")
+    public void goToMyDetails(){
+        signInPage.myDetailsInMyAccount();
+    }
+    @And("User checks that signing in was successful in MyAccount with email {string}")
+    public void checkSuccessfulSignIn(String expectedEmail){
+        assertEquals(expectedEmail,signInPage.getEmailFromMyAccount());
+    }
+    @And("User submits registration")
+    public void submitRegistration (){
+        registerPage.clickSubmitButton();
+    }
+
 
     @After
     public void tearDown() {
