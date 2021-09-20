@@ -44,21 +44,18 @@ public class RegisterPage extends BasePage{
         passwordInRegistration.sendKeys(passwordForRegistration);
     }
     public void setDayInRegistration (int day){
-        dayInRegistration.click();
         driver.getCurrentUrl();
-        Select options = new Select(driver.findElement(By.className("//div[@class='subfield select-list']")));
+        Select options = new Select(driver.findElement(By.id("BirthDay")));
         options.selectByIndex(day);
     }
     public void setMonthInRegistration (int month){
-        dayInRegistration.click();
         driver.getCurrentUrl();
-        Select options = new Select(driver.findElement(By.className("//div[@class='subfield last-subfield select-list']")));
+        Select options = new Select(driver.findElement(By.id("BirthMonth")));
         options.selectByIndex(month);
     }
     public void setYearInRegistration (int year){
-        dayInRegistration.click();
         driver.getCurrentUrl();
-        Select options = new Select(driver.findElement(By.className("//div[@class='subfield last-subfield select-list']")));
+        Select options = new Select(driver.findElement(By.xpath("//select[@name='BirthYear']")));
         options.selectByIndex(year);
     }
 //    public void setMonthInRegistration(){
@@ -68,7 +65,7 @@ public class RegisterPage extends BasePage{
 //        yearInRegistration.click();
 //    }
     public void clickJoinButton(){
-        joinButton.click();
+        clickByElement(5, joinButton);
     }
     public void clickSubmitButton(){
         submitInRegistration.click();

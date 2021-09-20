@@ -15,7 +15,7 @@ public class WishListPage extends BasePage{
         super(driver);
     }
     public String getNumberOfProductsInWishList(){
-        waitVisibilityOfElement(5, numberOfProductsInWishlist);
+       // waitVisibilityOfElement(5, numberOfProductsInWishlist);
         final String [] fullNumber = numberOfProductsInWishlist.getText().split(" ");
         String onlyNumber = fullNumber[0];
         return onlyNumber;

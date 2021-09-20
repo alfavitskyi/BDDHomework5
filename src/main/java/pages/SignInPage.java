@@ -20,19 +20,23 @@ public class SignInPage extends BasePage{
         super(driver);
     }
     public void putEmailForSignIn (String email){
+
         emailFieldToSignIn.sendKeys(email);
     }
     public void putPasswordForSignIn(String password){
         passwordFieldToSignIn.sendKeys(password);
     }
     public void clickSignIn (){
-        signInButton.click();
+        clickByElement(5, signInButton);
     }
-    public String getEmailFromMyAccount(){
-        String email = driver.findElement(By.xpath("//input[@name='emailAddress']")).getText();
-        return email;
+    public String getEmailFromMyAccount() {
+        return driver.findElement(By.xpath("//input[@name='emailAddress']")).getText();
     }
+
     public void myDetailsInMyAccount(){
-        myDetailsButton.click();
+        clickByElement(10, myDetailsButton);;
+    }
+    public void isMyDetailsFieldVisible(){
+        myDetailsButton.isDisplayed();
     }
 }

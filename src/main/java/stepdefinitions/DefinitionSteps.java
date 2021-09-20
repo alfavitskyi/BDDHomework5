@@ -64,6 +64,11 @@ public class DefinitionSteps {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         homePage.isAccountButtonVisible();
     }
+    @And("User checks MyDetails button visibility")
+    public void checkMyDetailsButtonVisibility(){
+        //signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
+        signInPage.isMyDetailsFieldVisible();
+    }
     @And("User checks search My account button visibility")
     public void checkMyAccountButtonVisibility(){
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
@@ -96,21 +101,23 @@ public class DefinitionSteps {
         homePage.clickOnMyAccountButton();
     }
     @And("User selects day {int} in registration form")
-    public void fillInDayRegisterForm(int day){
-       registerPage.setDayInRegistration(day);
+    public void fillInDayRegisterForm(int day) {
+        registerPage.setDayInRegistration(day);
     }
     @And("User selects month {int} in registration form")
-    public void fillInMonthRegisterForm(int month){
+    public void fillInMonthRegisterForm(int month) {
         registerPage.setMonthInRegistration(month);
     }
     @And("User selects year {int} in registration form")
-    public void fillInYearRegisterForm(int year){
-        registerPage.setMonthInRegistration(year);
+    public void fillInYearRegisterForm(int year) {
+        registerPage.setYearInRegistration(year);
     }
-    @And("User puts  email {string} in registration form")
-    public void putEmailForRegistration (String email){
+    @And("User puts email {string} in registration form")
+    public void putEmailForRegistration(String email) {
+        registerPage = new RegisterPage(driver);
+       // registerPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         registerPage.putEmailInRegistration(email);
-        }
+    }
     @And("User puts  first name {string} in registration form")
     public void putFirstNameForRegistration (String firstName){
         registerPage.putFirstNameInRegistration(firstName);
@@ -130,16 +137,19 @@ public class DefinitionSteps {
     @And("User clicks Join in registration tab")
     public void clickJoinButton (){
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
-        registerPage.clickJoinButton();
+        //registerPage.clickJoinButton();
     }
     @And("User checks successful registration with email {string}")
     public void checkSuccessfulRegistration (String expectedEmail){
         signInPage = new SignInPage(driver);
+        signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         assertEquals(expectedEmail,signInPage.getEmailFromMyAccount());
     }
 
     @And("User puts email {string} for sign in my account")
     public void EmailForSignIn(String email){
+        signInPage = new SignInPage(driver);
+        signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
         signInPage.putEmailForSignIn(email);
     }
     @And("User puts password {string} for sign in my account")
@@ -152,6 +162,7 @@ public class DefinitionSteps {
     }
     @And("User goes to My details in My Account")
     public void goToMyDetails(){
+       signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
         signInPage.myDetailsInMyAccount();
     }
     @And("User checks that signing in was successful in MyAccount with email {string}")
@@ -161,7 +172,13 @@ public class DefinitionSteps {
     }
     @And("User submits registration")
     public void submitRegistration (){
+        registerPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         registerPage.clickSubmitButton();
+    }
+    @And("User clicks join on main page")
+    public void clickRegisterOnMainPage(){
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        homePage.clickRegisterOnMainPage();
     }
 
 
