@@ -18,7 +18,9 @@ Feature: Smoke
   Scenario Outline: Check registration
     Given User opens '<homePage>' page
     And User checks search Account button visibility
+    And User clicks on personal account button
     And User checks search My account button visibility
+    And User clicks on MyAccount button
     And User clicks Join in registration tab
     And User puts  email '<email>' in registration form
     And User puts  first name '<firstName>' in registration form

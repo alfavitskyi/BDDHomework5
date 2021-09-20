@@ -129,10 +129,12 @@ public class DefinitionSteps {
     }
     @And("User clicks Join in registration tab")
     public void clickJoinButton (){
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         registerPage.clickJoinButton();
     }
-    @And("User checks successful registration with email {String}")
+    @And("User checks successful registration with email {string}")
     public void checkSuccessfulRegistration (String expectedEmail){
+        signInPage = new SignInPage(driver);
         assertEquals(expectedEmail,signInPage.getEmailFromMyAccount());
     }
 
@@ -154,6 +156,7 @@ public class DefinitionSteps {
     }
     @And("User checks that signing in was successful in MyAccount with email {string}")
     public void checkSuccessfulSignIn(String expectedEmail){
+
         assertEquals(expectedEmail,signInPage.getEmailFromMyAccount());
     }
     @And("User submits registration")
