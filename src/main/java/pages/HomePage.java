@@ -13,6 +13,10 @@ public class HomePage extends BasePage{
     private  WebElement menCategory;
     @FindBy(xpath = "//a[@data-testid='savedItemsIcon']")
     private WebElement wishListButton;
+    @FindBy(xpath = "//button[@data-testid='myAccountIcon']")
+    private WebElement accountButton;
+    @FindBy(xpath = "//a[@data-testid='myaccount-link']")
+    private WebElement myAccountButton;
 
 
 
@@ -38,4 +42,6 @@ public class HomePage extends BasePage{
     public void clickWishListButton(){
         wishListButton.click();
     }
+    public void clickAccountButton(){accountButton.click();}
+    public void clickOnMyAccountButton(){myAccountButton.click();}
 }

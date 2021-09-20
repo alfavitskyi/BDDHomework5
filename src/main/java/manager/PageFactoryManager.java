@@ -3,6 +3,7 @@ package manager;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.SearchResultPage;
+import pages.SignInPage;
 import pages.WishListPage;
 
 public class PageFactoryManager {
@@ -16,4 +17,5 @@ WebDriver driver;
     }
     public SearchResultPage getSearchResultPage (){return new SearchResultPage(driver);}
     public WishListPage getWishListPage (){return new WishListPage(driver);}
+    public SignInPage getSignInPage (){return new SignInPage(driver);}
 }

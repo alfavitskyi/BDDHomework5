@@ -1,13 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
 
-import static org.openqa.selenium.By.xpath;
+
 
 public class WishListPage extends BasePage{
     @FindBy(xpath = "//div[contains(@class,'itemCount_')]")
