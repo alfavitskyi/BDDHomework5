@@ -16,6 +16,8 @@ public class SignInPage extends BasePage{
     private WebElement signInButton;
     @FindBy(xpath = "//a[@href='/my-account/my-details']")
     private WebElement myDetailsButton;
+    @FindBy(xpath = "//div[@class='_2roWJCL3cYLWn-WGjDB73j']")
+    private WebElement userNameFromMyAccount;
     public SignInPage(WebDriver driver) {
         super(driver);
     }
@@ -38,5 +40,8 @@ public class SignInPage extends BasePage{
     }
     public void isMyDetailsFieldVisible(){
         myDetailsButton.isDisplayed();
+    }
+    public String getuserNameFromMyAccount (){
+        return userNameFromMyAccount.getText();
     }
 }

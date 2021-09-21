@@ -25,6 +25,8 @@ public class RegisterPage extends BasePage{
     private WebElement yearInRegistration;
     @FindBy(xpath = "//input[@id='register']")
     private WebElement submitInRegistration;
+    @FindBy (xpath = "//span[@class='field-validation-error qa-email-validation']")
+    private WebElement validationOfAlreadyExistAccount;
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
@@ -58,17 +60,15 @@ public class RegisterPage extends BasePage{
         Select options = new Select(driver.findElement(By.xpath("//select[@name='BirthYear']")));
         options.selectByIndex(year);
     }
-//    public void setMonthInRegistration(){
-//        monthInRegistration.click();
-//    }
-//    public void setYearInRegistration(){
-//        yearInRegistration.click();
-//    }
+
     public void clickJoinButton(){
         clickByElement(5, joinButton);
     }
     public void clickSubmitButton(){
         submitInRegistration.click();
+    }
+    public String getConfirmationOfAlreadyExistAccount(){
+        return validationOfAlreadyExistAccount.getText();
     }
 
 

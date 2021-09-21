@@ -65,8 +65,8 @@ public class DefinitionSteps {
         homePage.isAccountButtonVisible();
     }
     @And("User checks MyDetails button visibility")
-    public void checkMyDetailsButtonVisibility(){
-        //signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
+    public void checkMyDetailsButtonVisibility() throws InterruptedException {
+        signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
         signInPage.isMyDetailsFieldVisible();
     }
     @And("User checks search My account button visibility")
@@ -94,10 +94,11 @@ public class DefinitionSteps {
     }
     @And("User clicks on personal account button")
     public void goToPersonalAccount(){
+        homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
         homePage.clickAccountButton();
     }
     @And("User clicks on MyAccount button")
-    public void clickOnMyAccountButton(){
+    public void clickOnMyAccountButton() throws InterruptedException {
         homePage.clickOnMyAccountButton();
     }
     @And("User selects day {int} in registration form")
@@ -115,7 +116,7 @@ public class DefinitionSteps {
     @And("User puts email {string} in registration form")
     public void putEmailForRegistration(String email) {
         registerPage = new RegisterPage(driver);
-       // registerPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        registerPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         registerPage.putEmailInRegistration(email);
     }
     @And("User puts  first name {string} in registration form")
@@ -161,18 +162,20 @@ public class DefinitionSteps {
         signInPage.clickSignIn();
     }
     @And("User goes to My details in My Account")
-    public void goToMyDetails(){
+    public void goToMyDetails() throws InterruptedException {
        signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
-        signInPage.myDetailsInMyAccount();
+       signInPage.myDetailsInMyAccount();
     }
-    @And("User checks that signing in was successful in MyAccount with email {string}")
-    public void checkSuccessfulSignIn(String expectedEmail){
-
-        assertEquals(expectedEmail,signInPage.getEmailFromMyAccount());
+    @And("User checks that signing in was successful in MyAccount with name {string}")
+    public void checkSuccessfulSignIn(String expectedName) throws InterruptedException {
+         signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
+         sleep(2000);
+         assertEquals(expectedName,signInPage.getuserNameFromMyAccount());
     }
     @And("User submits registration")
-    public void submitRegistration (){
+    public void submitRegistration () throws InterruptedException {
         registerPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        sleep(3000);
         registerPage.clickSubmitButton();
     }
     @And("User clicks join on main page")
@@ -180,8 +183,19 @@ public class DefinitionSteps {
         homePage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
         homePage.clickRegisterOnMainPage();
     }
-
-
+    @And("User checks number of products displayed with expected quantity {int}")
+    public void checkNumberOfProductsDisplayed(int expectedNumber) throws InterruptedException {
+        searchResultPage = new SearchResultPage(driver);
+        searchResultPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
+        //sleep(3000);
+        assertEquals(expectedNumber,searchResultPage.getNumberOfProductsDisplayed());
+    }
+    @And("User checks that account with entered email already exist - expected pop-up {string}")
+        public void checkThatAccountAlreadyExist(String text){
+        registerPage = new RegisterPage(driver);
+        registerPage.waitForPageLoadComplete(DEFAULT_TIMEOUT);
+        assertEquals(text, registerPage.getConfirmationOfAlreadyExistAccount());
+    }
     @After
     public void tearDown() {
         driver.close();
