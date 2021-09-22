@@ -35,7 +35,7 @@ Feature: Smoke
 
     Examples:
       | homePage                | email                         | firstName             |lastName     |password      |day|month|year|expectedName           |
-      | https://www.asos.com/   | alfavitskyi@gmail.com         | testFirst             |testLast     |password123457|2  |2    |8   |testFirst testLast     |
+      | https://www.asos.com/   | alfavitskiy@gmail.com         | testFirst             |testLast     |password123457|2  |2    |8   |testFirst testLast     |
 
   Scenario Outline: Check sign in
     Given User opens '<homePage>' page

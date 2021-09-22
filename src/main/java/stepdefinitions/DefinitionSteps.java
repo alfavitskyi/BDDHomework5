@@ -168,9 +168,10 @@ public class DefinitionSteps {
     }
     @And("User checks that signing in was successful in MyAccount with name {string}")
     public void checkSuccessfulSignIn(String expectedName) throws InterruptedException {
-         signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
-         sleep(2000);
-         assertEquals(expectedName,signInPage.getuserNameFromMyAccount());
+        signInPage = new SignInPage(driver);
+        signInPage.waitForPageLoadComplete(DEFAULT_TIMEOUT_FOR_WISHLIST);
+        sleep(2000);
+        assertEquals(expectedName,signInPage.getuserNameFromMyAccount());
     }
     @And("User submits registration")
     public void submitRegistration () throws InterruptedException {

@@ -48,7 +48,7 @@ public class HomePage extends BasePage{
         menCategory.click();
     }
     public void clickWishListButton(){
-        wishListButton.click();
+        clickByElement(5, wishListButton);
     }
     public void clickAccountButton(){
         clickByElement(5, accountButton);}
